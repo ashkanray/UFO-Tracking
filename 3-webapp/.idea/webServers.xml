@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c0301a3b-05e2-4a5f-a116-d928fb59d00c" name="Kafka">
+        <fileTransfer rootFolder="/home/arohani" accessType="SFTP" host="ec2-3-143-113-170.us-east-2.compute.amazonaws.com" port="22" sshConfigId="554924d0-a68b-4f04-905e-a3482c716c37" sshConfig="ec2-user@ec2-3-143-113-170.us-east-2.compute.amazonaws.com:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

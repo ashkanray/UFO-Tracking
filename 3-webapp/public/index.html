@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Airport Delays</title>
+    <link type="text/css" rel="stylesheet" href="elegant-aero.css" />
+  </head>
+  <!-- Thanks to Mario C. E. Freese <mcefreese@gmail.com> for permission to use background image -->
+  <body style='background-image:URL("ufo_web2.jpeg");background-repeat:repeat;background-position:center top;-webkit-background-size:100%;-moz-background-size:100%;-o-background-size:100%;background-size: 100%;'>
+    <p style="margin-bottom:2cm"></p>
+    <p class="elegant-aero" style="font-family: Helvetica; font-size: 12px; text-align: center; padding:5px; background:#FFFFFF;width:150px;margin:auto; position: relative; left: 230px;"><a href="submit.html">Log UFO Sightings</a></p>
+    
+    <form action="/sightings.html" style="width:600px;margin:10px auto;padding-top=200px;background:#FFFFFF" method="get" target="results_iframe" class="elegant-aero">
+      <h3 style="margin: 10px auto 0px auto; text-align: center; font-family: Helvetica">National Registered UFO Sightings</h3>
+      <p style="margin: 5px auto 0px auto; text-align: center; font-family: Helvetica; font-size: 12px"><a href="https://nuforc.org/databank/">National UFO Reporting Center Data Source</a></p>
+      <br>
+      <label>
+	<span>Select State:</span>
+	<!-- input type="text" name="state" value="TX"/ -->
+    <select name="state" style="display: block; margin-left: auto; margin-right: auto; width: 50%; font-family: Helvetica; font-size: 14px; color: black; background-size:10px;">
+        <option value="AL">AL - Alabama</option>
+        <option value="AK">AK - Alaska</option>
+        <option value="AZ">AZ - Arizona</option>
+        <option value="AR">AR - Arkansas</option>
+        <option value="CA">CA - California</option>
+        <option value="CO">CO - Colorado</option>
+        <option value="CT">CT - Connecticut</option>
+        <option value="DE">DE - Delaware</option>
+        <option value="FL">FL - Florida</option>
+        <option value="GA">GA - Georgia</option>
+        <option value="HI">HI - Hawaii</option>
+        <option value="ID">ID - Idaho</option>
+        <option value="IL">IL - Illinois</option>
+        <option value="IN">IN - Indiana</option>
+        <option value="IA">IA - Iowa</option>
+        <option value="KS">KS - Kansas</option>
+        <option value="KY">KY - Kentucky</option>
+        <option value="LA">LA - Louisiana</option>
+        <option value="ME">ME - Maine</option>
+        <option value="MD">MD - Maryland</option>
+        <option value="MA">MA - Massachusetts</option>
+        <option value="MI">MI - Michigan</option>
+        <option value="MN">MN - Minnesota</option>
+        <option value="MS">MS - Mississippi</option>
+        <option value="MO">MO - Missouri</option>
+        <option value="MT">MT - Montana</option>
+        <option value="NE">NE - Nebraska</option>
+        <option value="NV">NV - Nevada</option>
+        <option value="NH">NH - New Hampshire</option>
+        <option value="NJ">NJ - New Jersey</option>
+        <option value="NM">NM - New Mexico</option>
+        <option value="NY">NY - New York</option>
+        <option value="NC">NC - North Carolina</option>
+        <option value="ND">ND - North Dakota</option>
+        <option value="OH">OH - Ohio</option>
+        <option value="OK">OK - Oklahoma</option>
+        <option value="OR">OR - Oregon</option>
+        <option value="PA">PA - Pennsylvania</option>
+        <option value="RI">RI - Rhode Island</option>
+        <option value="SC">SC - South Carolina</option>
+        <option value="SD">SD - South Dakota</option>
+        <option value="TN">TN - Tennessee</option>
+        <option value="TX">TX - Texas</option>
+        <option value="UT">UT - Utah</option>
+        <option value="VT">VT - Vermont</option>
+        <option value="VA">VA - Virginia</option>
+        <option value="WA">WA - Washington</option>
+        <option value="WV">WV - West Virginia</option>
+        <option value="WI">WI - Wisconsin</option>
+        <option value="WY">WY - Wyoming</option>
+    </select>
+    
+
+      </label>
+      <label>
+	<span></span> <input style="text-align: center; font-weight: bold; font-style: italic; position: relative; width: 100px; font-size: 13px; color: white; background-color: darkblue" type="submit" value="Submit">
+      </label>
+    </form>
+    <p style="margin-bottom:2cm"/>
+
+    <iframe frameBorder="0" name="results_iframe" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+10+"px";}(this));' style="display:block;width:70%;margin-left:auto;margin-right:auto"/>
+
+
+  </body>
+</html>
