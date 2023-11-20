@@ -90,8 +90,37 @@ app.get('/sightings.html',function (req, res) {
 			let template = filesystem.readFileSync("result.mustache").toString();
 			let input = { yearly_averages: groupByYear(state_val, cells)};
 			let html = mustache.render(template,  { yearly_averages: groupByYear(state_val, cells)});
-		res.send(html);
+		
+            res.send(html);
 	})
 });
 	
 app.listen(port);
+
+
+/* Send simulated UFO data to kafka */
+
+var kafka = require('kafka-node');
+var Producer = kafka.Producer;
+var KeyedMessage = kafka.KeyedMessage;
+var kafkaClient = new kafka.KafkaClient({kafkaHost: process.argv[5]});
+var kafkaProducer = new Producer(kafkaClient);
+
+
+app.get('/submit-ufo.html',function (req, res) {
+	var state = req.query['state'];
+	var city = (req.query['city']);
+	var summary = (req.query['summary']);
+	var report = {
+		state : state,
+		city : city,
+		summary : summary,
+	};
+
+	kafkaProducer.send([{ topic: 'arohani_ufo_submissions', messages: JSON.stringify(report)}],
+		function (err, data) {
+			console.log(err);
+			console.log(report);
+			res.redirect('submit.html');
+		});
+});

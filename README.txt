@@ -1,32 +1,39 @@
-Steps for Project:
+# National UFO Sightings Summary
 
-1. What are we comparing UFO data with?
+This project was built for MPCS 53014: Big Data Application Architecture - Final Project
 
-Batch Layer
-- Scrape data using Python
-- Save data as CSV
-- Run the ingest file (ingest_ufo.sh) to upload the CSV to HDFS DFS / use SCP 
-- Run the HQL code (create_hql.sh) to create the HQL table in the cluster using the CSV file
-
-- Addtional data source to be added**
-
-
-Serving Layer
-- Use SCALA to create new views with existing hive tables
-- Can join the hive tables / create new calculations / etc.
-- Transfer new views via Scala to HBASE
-
-
-Speed Layer
-- TBD
+### Project Description
 
 
 
-UI 
-- Use a dropdown to search for events by country, and if needed, state / city
-- Output a graph of all events by year for a specified country or city
-    - Only for the US can you specify by state then city
-    - Checks for just country, and then state, and then city - if all three are populated, it obviously checks the data and narrows it down
-- Graph for month by month view of a location, if year is specified?
-- Input new findings as needed for speed layer
-- Compare UFO sightings with release of movies? weather events? flight / military planes?
+### Running Application Screenshots
+
+
+
+
+
+### How to Run Deployed Application
+
+The deployed web application can be found at http://ec2-52-14-115-151.us-east-2.compute.amazonaws.com:3008/sensor-readings.html, currently running in ```cwbryant/ui-layer/``` in a ```screen``` window. 
+
+To initiate the speed layer streaming:
+* ```cd``` into the ```/cwbryant/final_project directory```
+* submit the spark job with command: 
+```spark-submit --master local[2] --driver-java-options “-Dlog4j.configuration=file:///home/hadoop/ss.log4j.properties" --class StreamReadings /home/hadoop/cwbryant/final_project/uber-speed-update-views—1.0-SNAPSHOT.jar b-2.mpcs53014-kafka.198nfg.c7.kafka.us-east-2.amazonaws.com:9092,b-1.mpcs53014-kafka.198nfg.c7.kafka.us-east-2.amazonaws.com:9092```
+
+New sensor reading data can be inputted in the web app at http://ec2-52-14-115-151.us-east-2.compute.amazonaws.com:3008/submit-reading.html. The data will be pushed onto the ```cwbryant_readings``` Kafka topic, and the spark job will increment the relevant view.
+
+
+### Building the Application
+
+#### Batch Layer
+
+
+#### Serving Layer
+
+
+#### Speed Layer
+
+
+#### UI Layer
+
