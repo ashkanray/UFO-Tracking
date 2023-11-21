@@ -6,12 +6,32 @@
   </head>
   <body>
     <div style="margin-left:275px;margin-right:auto;display:inline-block;box-shadow: 10px 10px 5px #888888;border:1px solid #000000;-moz-border-radius-bottomleft:9px;-webkit-border-bottom-left-radius:9px;border-bottom-left-radius:9px;-moz-border-radius-bottomright:9px;-webkit-border-bottom-right-radius:9px;border-bottom-right-radius:9px;-moz-border-radius-topright:9px;-webkit-border-top-right-radius:9px;border-top-right-radius:9px;-moz-border-radius-topleft:9px;-webkit-border-top-left-radius:9px;border-top-left-radius:9px;background:white">
-      &nbsp;Total UFO Sightings from {{state_val}} by Year&nbsp;</div>
+      &nbsp;Top 5 Years of UFO Sightings in {{state}} &nbsp;</div>
+    <table class="CSS_Table_Example" style="margin:auto; width: 400px">
+        <tr>
+            <td>Year</td><td>Total Sightings</td>
+        </tr>
+        {{#top_years}}
+        <tr>
+            <td>{{year}}</td><td>{{sighting}}</td>
+        </tr>
+        {{/top_years}}
+    </table>
+        <p style="bottom-margin:10px">
+
+
+    <div style="margin-left:275px;margin-right:auto;display:inline-block;box-shadow: 10px 10px 5px #888888;border:1px solid #000000;-moz-border-radius-bottomleft:9px;-webkit-border-bottom-left-radius:9px;border-bottom-left-radius:9px;-moz-border-radius-bottomright:9px;-webkit-border-bottom-right-radius:9px;border-bottom-right-radius:9px;-moz-border-radius-topright:9px;-webkit-border-top-right-radius:9px;border-top-right-radius:9px;-moz-border-radius-topleft:9px;-webkit-border-top-left-radius:9px;border-top-left-radius:9px;background:white">
+      &nbsp;Total UFO Sightings in {{state}} by Year&nbsp;</div>
     <p style="bottom-margin:10px">
       <table class="CSS_Table_Example" style="width:60%;margin:auto;">
-        <tr><td>Year</td><td>Total Sightings</td></tr>
+        <tr>
+            <td>Year</td><td>Total Sightings</td>
+        </tr>
         {{#yearly_averages}}
-        <tr><td>{{year}}</td><td>{{sighting}}</td></tr>{{/yearly_averages}}
+        <tr>
+            <td>{{year}}</td><td>{{sighting}}</td>
+        </tr>
+        {{/yearly_averages}}
 	
     </table>
     </p>

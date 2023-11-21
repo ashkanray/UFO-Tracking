@@ -18,7 +18,8 @@ hclient.table('arohani_ufo_usa_state_year').scan(
 			type: "PrefixFilter",
 			value: "TX"
 		},
-		maxVersions: 1
+		maxVersions: 1,
+        reversed: true // Set the scan to be in reverse order
 	},
 	function (err, cells) {
 		console.info(cells);
@@ -58,7 +59,7 @@ function groupByYear(state_val, cells) {
 	let result = []; // let is a replacement for var that fixes some technical issues
 	let yearTotals; // Flights and delays for each year
 	let lastYear = 0; // No year yet
-	
+
     cells.forEach(function (cell) {
 		let year = Number(removePrefix(cell['key'], state_val));
 		if(lastYear !== year) {
@@ -70,7 +71,13 @@ function groupByYear(state_val, cells) {
 		yearTotals[removePrefix(cell['column'], 'ufo:')] = Number(cell['$'])
 		lastYear = year;
 	})
-	return result;
+
+	let sortedYearlyData = result.sort((a, b) => b.sighting - a.sighting);
+	let topFiveYears = sortedYearlyData.slice(0, 5);
+
+	let sortedByYear = result.sort((a, b) => b.year - a.year);
+
+	return { yearlyData: sortedByYear, topYears: topFiveYears };
 }
 
 
@@ -88,18 +95,23 @@ app.get('/sightings.html',function (req, res) {
 		},
 		function (err, cells) {
 			let template = filesystem.readFileSync("result.mustache").toString();
-			let input = { yearly_averages: groupByYear(state_val, cells)};
-			let html = mustache.render(template,  { yearly_averages: groupByYear(state_val, cells)});
+			let input = groupByYear(state_val, cells);
+			let html = mustache.render(template,  { yearly_averages: input.yearlyData, 
+                top_years: input.topYears,
+				state: state_val});
 		
             res.send(html);
 	})
+
+
+
 });
 	
 app.listen(port);
 
 
 /* Send simulated UFO data to kafka */
-
+/*
 var kafka = require('kafka-node');
 var Producer = kafka.Producer;
 var KeyedMessage = kafka.KeyedMessage;
@@ -111,10 +123,16 @@ app.get('/submit-ufo.html',function (req, res) {
 	var state = req.query['state'];
 	var city = (req.query['city']);
 	var summary = (req.query['summary']);
+
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let year_string = currentYear.toString();
+
 	var report = {
 		state : state,
 		city : city,
 		summary : summary,
+        year : year_string
 	};
 
 	kafkaProducer.send([{ topic: 'arohani_ufo_submissions', messages: JSON.stringify(report)}],
@@ -124,3 +142,4 @@ app.get('/submit-ufo.html',function (req, res) {
 			res.redirect('submit.html');
 		});
 });
+*/
