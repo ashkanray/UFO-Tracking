@@ -1,8 +1,8 @@
 import scala.reflect.runtime.universe._
 
 
-case class KafkaFlightRecord(
+case class KafkaUFO(
     state: String,
     city: String, 
-    summary: String
+    summary: String,
     year: String)

@@ -111,7 +111,7 @@ app.listen(port);
 
 
 /* Send simulated UFO data to kafka */
-/*
+
 var kafka = require('kafka-node');
 var Producer = kafka.Producer;
 var KeyedMessage = kafka.KeyedMessage;
@@ -142,4 +142,3 @@ app.get('/submit-ufo.html',function (req, res) {
 			res.redirect('submit.html');
 		});
 });
-*/
