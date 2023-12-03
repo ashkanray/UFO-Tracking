@@ -69,7 +69,7 @@ The current code tracks inputted data to a kafka topic ```arohani_ufo_submission
 For example, if a user submits a new sighting in Texas, this will save a new key as TX2023 and map it to our hbase table, incrementing the total count by 1.
 
 The spark streaming job is triggered by calling this in the project folder of our kafka cluster: 
-```spark-submit --master local[2] --driver-java-options "-Dlog4j.configuration=file:///home/hadoop/ss.log4j.properties" --class KafkaUFO uber-UFO_speed_scala-1.0-SNAPSHOT.jar b2.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092,b1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092,b3.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092```
+```spark-submit --master yarn --deploy-mode client --driver-java-options "-Dlog4j.configuration=file:///home/hadoop/ss.log4j.properties" --class StreamReports uber-UFO_speed_scala-1.0-SNAPSHOT.jar b-2.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092,b-3.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092,b-1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092```
 
 #### UI Layer
 We use a few items to display our webpage, including javascript and mustache templates. We have two webpages, index.html and submit.html,
